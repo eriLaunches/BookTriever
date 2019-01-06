@@ -12,7 +12,8 @@ export const gotBooks = books => ({
   books
 })
 
-// //THUNK CREATORS
+//THUNK CREATORS
+//searchValue is input from user (i.e. user enters in book title in the search field)
 export const fetchBooks = (input) =>  {
   return async (dispatch) => {
     try {

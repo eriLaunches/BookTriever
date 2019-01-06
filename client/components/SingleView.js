@@ -1,30 +1,72 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {fetchBook} from '../store/singleBook.js'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
+class SingleView extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
 
-const SingleView = (props) => {
-  console.log('HIT SINGLE VIEW', props)
-  const selectedBook = props.location.state.book
-  return (
-    <div>
-      <img src={`http://covers.openlibrary.org/b/id/${selectedBook.cover_i}-S.jpg`} alt='book cover'/>
-     <p><strong>{selectedBook.title_suggest}</strong></p>
-     <p>by {selectedBook.author_name ? selectedBook.author_name : <i>Unknown Author</i> }</p>
-     <p>{selectedBook.edition_count} {selectedBook.edition_count < 2 ?  'edition' : 'editions'} </p>
-    </div>
-  )
+  componentDidMount() {
+    //searching for single book by ISBN, the first one in the array. Perhaps in future, search by other ones too
+    const isbn = this.props.location.state.book.isbn[0]
+    this.props.onFetchBook(isbn)
+  }
+
+  render() {
+    const selectedBook = this.props.location.state.book
+
+    //need to refactor this....not sure why description isn't picked up initially
+    let description = !this.props.book.details
+      ? 'No description currently exists for this book'
+      : this.props.book.details.description
+
+    if (description === undefined)
+      description = 'No description currently exists for this book'
+    console.log('bookDetails', description)
+    return (
+      <div>
+        <img
+          src={`http://covers.openlibrary.org/b/id/${
+            selectedBook.cover_i
+          }-L.jpg`}
+          alt="book cover"
+        />
+        <p>
+          <strong>{selectedBook.title_suggest}</strong>
+        </p>
+        <p>
+          by{' '}
+          {selectedBook.author_name ? (
+            selectedBook.author_name
+          ) : (
+            <i>Unknown Author</i>
+          )}
+        </p>
+        <p>
+          {selectedBook.edition_count}{' '}
+          {selectedBook.edition_count < 2 ? 'edition' : 'editions'}{' '}
+        </p>
+        <p>Description: {description}</p>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
-  books: state.books
+  books: state.books,
+  book: state.book
 })
 
 const mapDispatchToProps = dispatch => ({
+  onFetchBook: input => dispatch(fetchBook(input))
 })
 
-export default SingleView
-
-
+const ConnectSingleView = connect(mapStateToProps, mapDispatchToProps)(
+  SingleView
+)
+export default ConnectSingleView
