@@ -5,6 +5,8 @@ import {fetchBook} from '../store/singleBook.js'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
+//This component renders the detailed view for a SINGLE book selected by the user
+
 class SingleView extends React.Component {
   constructor(props) {
     super(props)
@@ -27,7 +29,6 @@ class SingleView extends React.Component {
 
     if (description === undefined)
       description = 'No description currently exists for this book'
-    console.log('bookDetails', description)
     return (
       <div>
         <img
