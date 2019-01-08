@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import HomePage from './components/homePage/HomePage'
-import SearchResults from './components/searchResultsView/SearchResults'
+import ResultsContainer from './components/searchResultsView/ResultsContainer'
 import Test from './components/Test'
 import SingleView from './components/singleView/SingleView'
 
@@ -25,7 +25,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/" component={HomePage} />
-        <Route path="/search" component={SearchResults} />
+        <Route path="/search" component={ResultsContainer} />
 
         <Route path="/test" component={Test} />
 
