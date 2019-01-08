@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {Navbar} from './components'
-import Main from './components/HomePage'
+import Main from './components/homePage/HomePage'
 import Routes from './routes'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import blue from '@material-ui/core/colors/blue'

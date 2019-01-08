@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchBook} from '../store/singleBook.js'
+import {fetchBook} from '../../store/singleBook.js'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
