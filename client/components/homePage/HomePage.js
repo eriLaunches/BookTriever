@@ -1,18 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import axios from 'axios'
-import {fetchBooks} from '../store/books.js'
-import SearchResults from './SearchResults'
-import {handleFilter, handleSort} from '../utils'
+import {fetchBooks} from '../../store/books.js'
+import SearchResults from '../searchResultsView/SearchResults'
+import {handleFilter, handleSort} from '../../utils'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
-import history from '../history'
 
 //This component serves as the parent container that houses all the sub-components of the web application
 
-class Main extends React.Component {
+class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,7 +41,7 @@ class Main extends React.Component {
       currentBooks: [...this.props.books],
       hasSearched: true
     })
-    history.push('/search')
+    this.props.history.push('/search')
   }
 
   /*In order for the sort and filter feature to work simultaneously (i.e. sort only ebooks), everytime a user selects a sort or a filter, both sort and filter state selections will occur using the handleSort and handleFilter methods.*/
@@ -57,7 +56,7 @@ class Main extends React.Component {
 
   render() {
     const {currentBooks, hasSearched} = this.state
-    console.log('PROPS :', this.props.books)
+    console.log('PROPS IN HOMEPAGE :', this.props)
     return (
       <div className="home-container">
         <div id="home-logo-container">
@@ -75,7 +74,6 @@ class Main extends React.Component {
               name="inputName"
               type="text"
               placeholder="Please enter a book title..."
-              onFocus="this.placeholder=''"
               onChange={this.handleChange}
             />
             {/* <button type="submit" id="search-btn">
@@ -92,7 +90,7 @@ class Main extends React.Component {
             </Button>
           </form>
         </div>
-        {hasSearched ? (
+        {/* {hasSearched ? (
           <div>
             <div>
               <label>Sort by</label>
@@ -108,9 +106,9 @@ class Main extends React.Component {
                 <option value="ebooks"> Ebooks </option>
               </select>
             </div>
-            <div>{/* <SearchResults books={currentBooks} /> */}</div>
+            <div><SearchResults books={currentBooks} /></div>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     )
   }
@@ -124,5 +122,6 @@ const mapDispatchToProps = dispatch => ({
   onFetchBooks: input => dispatch(fetchBooks(input))
 })
 
-const ConnectMain = connect(mapStateToProps, mapDispatchToProps)(Main)
-export default ConnectMain
+const ConnectHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage)
+
+export default ConnectHomePage
