@@ -5,25 +5,23 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 import {fetchBooks} from '../store/books.js'
 import SearchResults from './SearchResults'
-import SortResults from './SortResults'
+import {handleFilter, handleSort} from '../utils'
+
+//This component serves as the parent container that houses all the sub-components of the web application
 
 class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       inputName: '',
-      cleanBooks: [], //allbooks on our redux store that hasn't been sorted/filtered
-      books: [], //stores current state of books including user filter & sort
+      currentBooks: [], //stores current state of books including after user filters and/or sorts population
       hasSearched: false,
       sortBy: 'relevance',
       filterBy: 'everything'
     }
-
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSortFilter = this.handleSortFilter.bind(this)
-    this.handleFilter = this.handleFilter.bind(this)
-    this.handleSort = this.handleSort.bind(this)
   }
 
   handleChange(event) {
@@ -37,74 +35,32 @@ class Main extends React.Component {
     event.preventDefault()
     await this.props.onFetchBooks(this.state.inputName)
     this.setState({
-      cleanBooks: this.props.books,
-      books: [...this.props.books],
+      //set initial state of books to be the entire book population fetched from API
+      currentBooks: [...this.props.books],
       hasSearched: true
     })
   }
 
+  /*In order for the sort and filter feature to work simultaneously (i.e. sort only ebooks), everytime a user selects a sort or a filter, both sort and filter state selections will occur using the handleSort and handleFilter methods.*/
   async handleSortFilter(event) {
     await this.setState({[event.target.name]: event.target.value})
-    let currentBooks = await this.handleSort()
-    currentBooks = await this.handleFilter(currentBooks)
-    this.setState({books: currentBooks})
-  }
-
-  handleSort() {
-    let selection = this.state.sortBy
-    const allBooks = this.state.cleanBooks //all books on our redux store that hasn't been altered. //Issue with cleanBooks getting altered after filtering for more than 1 round
-    let currentBooks = this.state.books //pass in current state of books for sorting
-    console.log('Handlesort state', this.state)
-    console.log('Handlesort props', this.props.books)
-
-    switch (selection) {
-      case 'relevance':
-        currentBooks = allBooks //not the most efficient way to get relevance
-        break
-      case 'mostEditions':
-        currentBooks.sort((a, b) => b.edition_count - a.edition_count)
-        break
-      case 'firstPublished':
-        currentBooks.sort((a, b) => a.first_publish_year - b.first_publish_year)
-        break
-      case 'mostRecent':
-        currentBooks.sort((a, b) => b.first_publish_year - a.first_publish_year)
-        break
-      default:
-        break
-    }
-    console.log('later Handlesort proprs', this.props)
-    console.log('later Handlesort state', this.state)
-
-    return currentBooks
-  }
-
-  handleFilter(currentBooks) {
-    const allBooks = this.props.books
-    let selection = this.state.filterBy
-    switch (selection) {
-      case 'everything':
-        //currentBooks = allBooks
-        break
-      case 'ebooks':
-        currentBooks = currentBooks.filter(book => book.ebook_count_i > 0)
-        break
-      default:
-        break
-    }
-
-    return currentBooks
+    let {sortBy, filterBy} = this.state
+    let books = this.props.books
+    let filteredBooks = await handleFilter(filterBy, books)
+    let sortedFilteredBooks = await handleSort(sortBy, filteredBooks)
+    this.setState({currentBooks: sortedFilteredBooks})
   }
 
   render() {
-    const {books, hasSearched} = this.state
+    const {currentBooks, hasSearched} = this.state
+    console.log('BOOKS PROPS in Main View:', this.props.books)
     return (
       <div>
         <div>
           <form onSubmit={this.handleSubmit}>
             <div>
               <label htmlFor="inputName">
-                <small>Search for a book</small>
+                <small>Enter a title and we'll get searching for you!</small>
               </label>
               <input
                 name="inputName"
@@ -134,7 +90,7 @@ class Main extends React.Component {
               </select>
             </div>
             <div>
-              <SearchResults books={books} />
+              <SearchResults books={currentBooks} />
             </div>
           </div>
         ) : null}

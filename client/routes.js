@@ -22,7 +22,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/book" component={Main} />
+        <Route path="/books" component={Main} />
         <Route name="singleview" path="/:single" component={SingleView} />
         {isLoggedIn && (
           <Switch>

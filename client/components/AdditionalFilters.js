@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-//This component returns a list of all book results matching the user's search criteria by book title
+//This component renders additional filter options for the user
 
-const SearchResults = props => {
+const AdditionalFilters = props => {
   const books = props.books
   console.log('BOOKS in Search Results', books)
   return books.length ? (
@@ -47,4 +47,4 @@ const SearchResults = props => {
 // const mapDispatchToProps = dispatch => ({
 // })
 
-export default SearchResults
+export default AdditionalFilters
