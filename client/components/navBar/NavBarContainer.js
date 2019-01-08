@@ -12,19 +12,16 @@ import {connect} from 'react-redux'
 // import Typography from '@material-ui/core/Typography'
 
 import React from 'react'
-import PropTypes from 'prop-types'
+import SearchBar from './SearchBar.js'
+import {Link} from 'react-router-dom'
 import {withStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import InputBase from '@material-ui/core/InputBase'
-import SearchIcon from '@material-ui/icons/Search'
 import SwitchThemeIcon from '@material-ui/icons/Highlight'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
-
 import {fade} from '@material-ui/core/styles/colorManipulator'
-import SearchBar from './SearchBar'
 import {fetchBooks} from '../../store/books.js'
 
 const styles = theme => ({
@@ -61,8 +58,7 @@ class NavBarContainer extends React.Component {
   }
 
   render() {
-    const {classes} = this.props
-    console.log('NAV CONTAINER PROPS', this.props)
+    const {classes} = this.props //Use for targeting Material UI elements for styling
     if (this.props.location.pathname === '/') return ''
     else
       return (
@@ -71,10 +67,15 @@ class NavBarContainer extends React.Component {
           <AppBar position="fixed">
             <Toolbar>
               <Typography variant="h6" color="inherit">
-                <img
-                  id="nav-logo"
-                  src="https://i.ibb.co/bH4S9j3/booktrieverlogo2.png"
-                />
+                <Tooltip title="Navigate to Home">
+                  <Link to="/">
+                    <img
+                      onClick={() => this.props.history.push('/')}
+                      id="nav-logo"
+                      src="https://i.ibb.co/bH4S9j3/booktrieverlogo2.png"
+                    />
+                  </Link>
+                </Tooltip>
               </Typography>
               <SearchBar
                 handleSubmit={this.handleChange}

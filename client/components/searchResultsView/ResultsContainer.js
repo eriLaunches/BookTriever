@@ -6,10 +6,15 @@ import axios from 'axios'
 import {fetchBooks} from '../../store/books.js'
 import SearchResults from './SearchResults'
 import {handleFilter, handleSort} from '../../utils'
-import SearchIcon from '@material-ui/icons/Search'
-import Button from '@material-ui/core/Button'
+import styles from './styleSearchResults'
+import {withStyles} from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 //This component serves as the parent container for the search results view
+const sections = ['All Books', 'Ebooks']
 
 class ResultsContainer extends React.Component {
   constructor(props) {
@@ -38,31 +43,44 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
+    const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
     console.log('PROP BOOKS in RESULTS CONTAINER', this.props)
     return (
-      <div>
-        <div>
-          <div>
-            <label>Sort by</label>
-            <select name="sortBy" onChange={this.handleSortFilter}>
-              <option value="relevance">Relevance</option>
-              <option value="mostEditions"> Most Editions </option>
-              <option value="firstPublished"> First Published </option>
-              <option value="mostRecent"> Most Recent </option>
-            </select>
-            <label>Filter by</label>
-            <select name="filterBy" onChange={this.handleSortFilter}>
-              <option value="everything">Everything</option>
-              <option value="ebooks"> Ebooks </option>
-            </select>
-          </div>
-          <div>
-            <SearchResults books={currentBooks} />
-          </div>
+      <React.Fragment>
+        <CssBaseline />
+        <div className={classes.layout}>
+          <Tabs indicatorColor="primary" textColor="primary">
+            <Tab label="All Books" />
+            <Tab label="Ebooks" />
+          </Tabs>
+          {/* Search Results -- listing of books found */}
+          <SearchResults books={currentBooks} />
+          {/* End sub featured posts */}
         </div>
-      </div>
+      </React.Fragment>
     )
+    // <div>
+    //   <div>
+    //     <div>
+    //       <label>Sort by</label>
+    //       <select name="sortBy" onChange={this.handleSortFilter}>
+    //         <option value="relevance">Relevance</option>
+    //         <option value="mostEditions"> Most Editions </option>
+    //         <option value="firstPublished"> First Published </option>
+    //         <option value="mostRecent"> Most Recent </option>
+    //       </select>
+    //       <label>Filter by</label>
+    //       <select name="filterBy" onChange={this.handleSortFilter}>
+    //         <option value="everything">Everything</option>
+    //         <option value="ebooks"> Ebooks </option>
+    //       </select>
+    //     </div>
+    //     <div>
+    //       <SearchResults books={currentBooks} />
+    //     </div>
+    //   </div>
+    // </div>
   }
 }
 
@@ -76,4 +94,4 @@ const mapStateToProps = state => ({
 
 const ConnectResultsContainer = connect(mapStateToProps)(ResultsContainer)
 
-export default ConnectResultsContainer
+export default withStyles(styles)(ConnectResultsContainer)
