@@ -6,38 +6,7 @@ import {Link} from 'react-router-dom'
 //This component renders additional filter options for the user
 
 const AdditionalFilters = props => {
-  const books = props.books
-  console.log('BOOKS in Search Results', books)
-  return books.length ? (
-    <div>
-      <div>{books.length} results found</div>
-      {books.map(book => (
-        <div key={book.key}>
-          {/* book object contains cover id which can be passed into URL to retrieve the image related to the book */}
-          <img
-            src={`http://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
-            alt="book cover"
-          />
-          <Link to={{pathname: '/singleview', state: {book}}}>
-            <p>
-              {/* using title_suggest vs title becauseif we want to search not by title maybe there could be an issue? */}
-              <strong>{book.title}</strong>
-            </p>
-          </Link>
-          <p>
-            by {book.author_name ? book.author_name : <i>Unknown Author</i>}
-          </p>
-          <p>
-            {book.edition_count}{' '}
-            {book.edition_count < 2 ? 'edition' : 'editions'} - first published
-            in {book.first_publish_year}{' '}
-          </p>
-        </div>
-      ))}
-    </div>
-  ) : (
-    <div>Sorry, no results match your search. Please try again.</div>
-  )
+  return <div>hi</div>
 }
 
 // const mapStateToProps = state => ({

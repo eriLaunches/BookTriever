@@ -19,3 +19,64 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* HOMEPAGE */
+#home-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#home-logo {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  clear: both;
+  padding-top: 112px;
+  padding-bottom: 20px;
+  width: 400px;
+}
+
+.search-container {
+  text-align: center;
+  display: flex;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 3;
+  height: 44px;
+  margin: 0 auto;
+  width: 530px;
+}
+
+#home-searchbar {
+  display: flex;
+  flex: 100%;
+  background-color: transparent;
+  width: 300;
+  margin: 0;
+  padding: 0;
+  margin-top: -37;
+  line-height: 32px;
+  outline: none;
+  border: none;
+  padding: 0 8px;
+}
+
+#home-searchbar:hover {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+#home-search-btn {
+  padding-right: 13px;
+  padding-left: 22;
+}
+
+#home-search-icon {
+  margin-left: 0.2em;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
