@@ -5,6 +5,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {fetchBooks} from '../../store/books.js'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
+import history from '../../history'
 
 //This component serves as the homepage view -- what the user first sees when entering the site
 
@@ -28,7 +29,7 @@ class HomePage extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     await this.props.onFetchBooks(this.state.searchValue)
-    this.props.history.push('/search')
+    history.push('/search')
   }
 
   render() {
