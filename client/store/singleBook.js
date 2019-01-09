@@ -1,5 +1,5 @@
 const axios = require('axios')
-import {createKey} from '../utils'
+import {createKey} from '../utilities/helperFuncs'
 
 const initialState = {}
 

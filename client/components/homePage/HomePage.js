@@ -4,7 +4,7 @@ import {fetchBooks} from '../../store/books.js'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import history from '../../history'
-import imagesInventory from '../../images'
+import imagesInventory from '../../utilities/images'
 
 //This component serves as the homepage view -- what the user first sees when entering the site. After the user inputs a search value, a get request will be send to the Open Library API. Upon receipt of data and update to the redux store, user will be navigated to the search results view.
 class HomePage extends React.Component {

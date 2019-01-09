@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import {fade} from '@material-ui/core/styles/colorManipulator'
 import {fetchBooks} from '../../store/books.js'
-import imagesInventory from '../../images'
+import imagesInventory from '../../utilities/images'
 
 const styles = theme => ({
   root: {
