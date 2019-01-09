@@ -1,7 +1,7 @@
 {
   "name": "booktriever",
   "version": "1.0.0",
-  "description": "A handy application for retrieving books",
+  "description": "Amex App Library Challenge",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -34,22 +34,16 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Erica Luong",
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^3.8.2",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.15.3",
-    "compression": "^1.7.3",
-    "connect-session-sequelize": "^4.1.0",
     "express": "^4.16.3",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
     "morgan": "^1.9.1",
-    "passport": "^0.3.2",
-    "passport-google-oauth": "^1.0.0",
-    "pg": "^6.1.2",
-    "pg-hstore": "^2.3.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -57,9 +51,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
-    "redux-thunk": "^2.3.0",
-    "sequelize": "^4.38.0",
-    "socket.io": "^2.1.1"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",

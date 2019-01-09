@@ -11,7 +11,8 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue: ''
+      searchValue: '',
+      fetchData: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -26,39 +27,50 @@ class HomePage extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
+    //Pass request to redux thunk  and set the fetchData state accordingly for loading spinner
+    this.setState({fetchData: true})
     await this.props.onFetchBooks(this.state.searchValue)
+    await this.setState({fetchData: false})
     history.push('/search')
   }
 
   render() {
-    return (
-      <div className="home-container">
-        <div id="home-logo-container">
-          <img id="home-logo" src={imagesInventory.logo} alt="Website logo" />
+    if (this.state.fetchData)
+      return (
+        <div id="loader-container">
+          <div className="loader" />
         </div>
-        <div>
-          <form onSubmit={this.handleSubmit} className="search-container">
-            <label htmlFor="home-searchbar" />
-            <input
-              id="home-searchbar"
-              name="searchValue"
-              type="text"
-              placeholder="Please enter a book title..."
-              onChange={this.handleChange}
-            />
-            <Button
-              id="home-search-btn"
-              type="submit"
-              variant="contained"
-              color="secondary"
-            >
-              Search
-              <SearchIcon id="home-search-icon" />
-            </Button>
-          </form>
+      )
+    else {
+      return (
+        <div className="home-container">
+          <div id="home-logo-container">
+            <img id="home-logo" src={imagesInventory.logo} alt="Website logo" />
+          </div>
+          <div>
+            <form onSubmit={this.handleSubmit} className="search-container">
+              <label htmlFor="home-searchbar" />
+              <input
+                id="home-searchbar"
+                name="searchValue"
+                type="text"
+                placeholder="Please enter a book title..."
+                onChange={this.handleChange}
+              />
+              <Button
+                id="home-search-btn"
+                type="submit"
+                variant="contained"
+                color="secondary"
+              >
+                Search
+                <SearchIcon id="home-search-icon" />
+              </Button>
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

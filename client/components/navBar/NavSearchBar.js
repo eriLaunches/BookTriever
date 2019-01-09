@@ -25,7 +25,10 @@ class SearchResults extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     await this.props.onFetchBooks(this.state.searchValue)
-    history.push('/search')
+    console.log('here', history)
+    if (history.location !== '/search') {
+      history.push('/search')
+    }
   }
 
   render() {
