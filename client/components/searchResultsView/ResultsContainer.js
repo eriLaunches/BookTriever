@@ -10,9 +10,6 @@ import {handleFilter, handleSort} from '../../utilities/sortFilterHelper'
 import styles from './styleSearchResults'
 import {withStyles} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Typography from '@material-ui/core/Typography'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
 import FilterMenu from './FilterMenu'
 
 //This component serves as the parent container for the search results view
@@ -61,44 +58,31 @@ class ResultsContainer extends React.Component {
     const {currentBooks} = this.state
     const handleSortFilter = this.handleSortFilter
 
-    return (
-      <div>
-        <CssBaseline />
-        <div id="filter-sort-menu">
-          <FilterMenu handleSortFilter={handleSortFilter} />
-          <SortDropDown handleSortFilter={handleSortFilter} />
+    if (this.props.fetchStatus)
+      return (
+        <div id="loader-container">
+          <div className="loader" />
         </div>
-        <div className={classes.layout}>
-          <SearchResults books={currentBooks} />
+      )
+    else
+      return (
+        <div>
+          <CssBaseline />
+          <div id="filter-sort-menu">
+            <FilterMenu handleSortFilter={handleSortFilter} />
+            <SortDropDown handleSortFilter={handleSortFilter} />
+          </div>
+          <div className={classes.layout}>
+            <SearchResults books={currentBooks} />
+          </div>
         </div>
-      </div>
-    )
-    // <div>
-    //   <div>
-    //     <div>
-    //       <label>Sort by</label>
-    //       <select name="sortBy" onChange={this.handleSortFilter}>
-    //         <option value="relevance">Relevance</option>
-    //         <option value="mostEditions"> Most Editions </option>
-    //         <option value="firstPublished"> First Published </option>
-    //         <option value="mostRecent"> Most Recent </option>
-    //       </select>
-    //       <label>Filter by</label>
-    //       <select name="filterBy" onChange={this.handleSortFilter}>
-    //         <option value="everything">Everything</option>
-    //         <option value="ebooks"> Ebooks </option>
-    //       </select>
-    //     </div>
-    //     <div>
-    //       <SearchResults books={currentBooks} />
-    //     </div>
-    //   </div>
-    // </div>
+      )
   }
 }
 
 const mapStateToProps = state => ({
-  books: state.books
+  books: state.books,
+  fetchStatus: state.fetchStatus
 })
 
 // const mapDispatchToProps = dispatch => ({

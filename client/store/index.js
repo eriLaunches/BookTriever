@@ -9,7 +9,8 @@ import book from './singleBook'
 
 const reducer = combineReducers({
   books,
-  book
+  book,
+  fetchStatus
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
