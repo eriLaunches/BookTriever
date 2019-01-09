@@ -99,9 +99,7 @@ const SearchResults = props => {
     //     </div>
     //   ))}
     // </div>
-    <Typography>
-      Sorry, no results matched your search. Please try again.
-    </Typography>
+    <Typography>Sorry, no results matched your search.</Typography>
   )
 }
 
