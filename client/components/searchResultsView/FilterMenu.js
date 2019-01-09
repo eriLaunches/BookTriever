@@ -17,7 +17,7 @@ const styles = {
   root: {
     flexGrow: 1,
     marginTop: 86,
-    marginLeft: 50
+    marginLeft: 70
   }
 }
 

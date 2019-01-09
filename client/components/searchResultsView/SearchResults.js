@@ -31,9 +31,10 @@ const SearchResults = props => {
             md="auto"
             className={classes.grid}
           >
-            <Card className={classes.card}>
-              <Hidden xsDown>
-                <Link to={{pathname: '/singleview', state: {book}}}>
+            {' '}
+            <Link to={{pathname: '/singleview', state: {book}}}>
+              <Card className={classes.card}>
+                <Hidden xsDown>
                   <CardMedia
                     className={classes.cardMedia}
                     image={
@@ -45,39 +46,37 @@ const SearchResults = props => {
                     }
                     title="Book Cover"
                   />
-                </Link>
-              </Hidden>
-              <div className={classes.cardDetails}>
-                <CardContent>
-                  <Link to={{pathname: '/singleview', state: {book}}}>
+                </Hidden>
+
+                <div className={classes.cardDetails}>
+                  <CardContent>
                     <Typography component="h2" variant="h5">
                       {book.title}
                     </Typography>
-                  </Link>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    by{' '}
-                    {book.author_name ? (
-                      book.author_name
-                    ) : (
-                      <i>Unknown Author</i>
-                    )}
-                  </Typography>
-                  <Typography variant="subtitle1" paragraph>
-                    {book.edition_count}
-                    {book.edition_count < 2 ? ' edition' : ' editions'}
-                  </Typography>
-                  <Typography variant="subtitle1" paragraph>
-                    First published in {book.first_publish_year}{' '}
-                  </Typography>
-                </CardContent>
-              </div>
-            </Card>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      by{' '}
+                      {book.author_name ? (
+                        book.author_name
+                      ) : (
+                        <i>Unknown Author</i>
+                      )}
+                    </Typography>
+                    <Typography variant="subtitle1" paragraph>
+                      {book.edition_count}
+                      {book.edition_count < 2 ? ' edition' : ' editions'}
+                    </Typography>
+                    <Typography variant="subtitle1" paragraph>
+                      First published in {book.first_publish_year}{' '}
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>
-    </div> //     <div key={book.key}> //   {books.map(book => ( //   <div>{books.length} results found</div> // <div>
+    </div> //       {/* book object contains cover id which can be passed into URL to retrieve the image related to the book */} //     <div key={book.key}> //   {books.map(book => ( //   <div>{books.length} results found</div> // <div>
   ) : (
-    //       {/* book object contains cover id which can be passed into URL to retrieve the image related to the book */}
     //       <img
     //         src={`http://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
     //         alt="book cover"

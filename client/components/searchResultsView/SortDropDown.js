@@ -10,61 +10,125 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import NativeSelect from '@material-ui/core/NativeSelect'
+
+// const styles = theme => ({
+//   root: {
+//     display: 'flex',
+//     marginTop: 70
+//   },
+//   formControl: {
+//     margin: theme.spacing.unit,
+//     marginLeft: 100,
+//     minWidth: 120
+//   },
+//   selectEmpty: {
+//     // marginTop: theme.spacing.unit * 2
+//   }
+// })
+
+// class SortByDropDown extends React.Component {
+//   state = {
+//     age: ''
+//   }
+
+//   componentDidMount() {
+//     this.setState({})
+//   }
+
+//   handleChange = event => {
+//     this.setState({[event.target.name]: event.target.value})
+//   }
+
+//   render() {
+//     const {classes} = this.props
+
+//     return (
+//       <form className={classes.root} autoComplete="off">
+//         <FormControl className={classes.formControl}>
+//           <InputLabel htmlFor="age-simple">sort by</InputLabel>
+//           <Select
+//             value={this.state.age}
+//             onChange={this.handleChange}
+//             inputProps={{name: 'sortBy'}}
+//           >
+//             <MenuItem value="Relevance">
+//               <em>Relevance</em>
+//             </MenuItem>
+//             <MenuItem value={10}>Ten</MenuItem>
+//             <MenuItem value={20}>Twenty</MenuItem>
+//             <MenuItem value={30}>Thirty</MenuItem>
+//           </Select>
+
+// <FormHelperText>Sort By</FormHelperText> */
+
+//         </FormControl>
+//       </form>
+//     )
+//   }
+// }
+
+// SortByDropDown.propTypes = {
+//   classes: PropTypes.object.isRequired
+// }
+
+// export default withStyles(styles)(SortByDropDown)
+
+const sortOptions = [
+  'relavence',
+  'most editions',
+  'first published',
+  'most recent'
+]
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    // flexWrap: 'wrap',
+    marginTop: 96,
+    marginLeft: theme.spacing.unit * 20
   },
   formControl: {
-    // margin: theme.spacing.unit,
-    marginLeft: 100,
+    margin: theme.spacing.unit,
     minWidth: 120
-  },
-  selectEmpty: {
-    // marginTop: theme.spacing.unit * 2
   }
 })
 
-class SortByDropDown extends React.Component {
+class NativeSelects extends React.Component {
   state = {
-    age: ''
+    sortBy: ''
   }
 
-  componentDidMount() {
-    this.setState({})
-  }
-
-  handleChange = event => {
-    this.setState({[event.target.name]: event.target.value})
+  handleChange(event) {
+    this.props.handleSortFilter('sortBy', event.target.value)
+    this.setState({sortBy: event.target.value})
   }
 
   render() {
     const {classes} = this.props
-
+    console.log('sortdropdown state', this.state)
     return (
-      <form className={classes.root} autoComplete="off">
+      <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-simple">sort by</InputLabel>
-          <Select
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{name: 'age', id: 'age-simple'}}
+          <InputLabel shrink>Sort By</InputLabel>
+          <NativeSelect
+            value={this.state.sortBy}
+            onChange={e => this.handleChange(e)}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+            {/* Potential to store all these sort by options in a separate object and map through */}
+            <option value="relevance">Relevance</option>
+            <option value="most editions">Most Editions</option>
+            <option value="first published">First Published</option>
+            <option value="most recent">Most Recent</option>
+          </NativeSelect>
         </FormControl>
-      </form>
+      </div>
     )
   }
 }
 
-SortByDropDown.propTypes = {
+NativeSelects.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(SortByDropDown)
+export default withStyles(styles)(NativeSelects)

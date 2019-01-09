@@ -13,17 +13,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import FilterSortMenu from './FilterSortMenu'
+import FilterMenu from './FilterMenu'
 
 //This component serves as the parent container for the search results view
-
-const filterOptions = ['All Books', 'Ebooks']
-const sortOptions = [
-  'Relevant',
-  'Most Editions',
-  'First Published',
-  'Most Recent'
-]
 
 class ResultsContainer extends React.Component {
   constructor(props) {
@@ -58,11 +50,15 @@ class ResultsContainer extends React.Component {
   render() {
     const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
+    const handleSortFilter = this.handleSortFilter
     console.log('PROP BOOKS in RESULTS CONTAINER', this.props)
     return (
       <div>
         <CssBaseline />
-        <FilterSortMenu handleSortFilter={this.handleSortFilter} />
+        <div id="filter-sort-menu">
+          <FilterMenu handleSortFilter={handleSortFilter} />
+          <SortDropDown handleSortFilter={handleSortFilter} />
+        </div>
         <div className={classes.layout}>
           <SearchResults books={currentBooks} />
         </div>
