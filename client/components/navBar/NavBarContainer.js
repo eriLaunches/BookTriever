@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import React from 'react'
-import SearchBar from './SearchBar.js'
+import NavSearchBar from './NavSearchBar'
 import {Link} from 'react-router-dom'
 import {withStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -29,10 +29,6 @@ class NavBarContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
-    this.forceUpdate()
-  }
-
   handleChange(event) {
     //set state for user search value
     this.setState({
@@ -41,6 +37,7 @@ class NavBarContainer extends React.Component {
   }
 
   async handleSubmit(event) {
+    console.log('HITTING HERE?')
     event.preventDefault()
     await this.props.onFetchBooks(this.state.searchValue)
     this.props.history.push('/search')
@@ -48,6 +45,7 @@ class NavBarContainer extends React.Component {
 
   render() {
     const {classes} = this.props //Use for targeting Material UI elements for styling
+
     if (this.props.location.pathname === '/') return ''
     else
       return (
@@ -67,7 +65,7 @@ class NavBarContainer extends React.Component {
                   </Link>
                 </Tooltip>
               </Typography>
-              <SearchBar
+              <NavSearchBar
                 handleSubmit={this.handleChange}
                 handleChange={this.handleChange}
               />

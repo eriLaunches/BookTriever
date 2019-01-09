@@ -14,6 +14,15 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
+
+// import { loadState, saveState } from './localStorage'
+
+// //To persist the state of the application using localStorage
+// const persistedState = loadState()
+// store.subscribe(() => {
+//   saveState(store.getState())
+// })
+
 const store = createStore(reducer, middleware)
 
 export default store

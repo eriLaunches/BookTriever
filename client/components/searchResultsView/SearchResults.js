@@ -11,12 +11,12 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Hidden from '@material-ui/core/Hidden'
+import ButtonBase from '@material-ui/core/ButtonBase'
 
 //This component returns a list of all book results matching the user's search criteria by book title
 
 const SearchResults = props => {
   const books = props.books
-  console.log('BOOKS in Search Results', books)
   const {classes} = props //Style with Material UI
   return books.length ? (
     <div>
@@ -34,19 +34,20 @@ const SearchResults = props => {
             {' '}
             <Link to={{pathname: '/singleview', state: {book}}}>
               <Card className={classes.card}>
-                <Hidden xsDown>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={
-                      book.cover_i
-                        ? `http://covers.openlibrary.org/b/id/${
-                            book.cover_i
-                          }-M.jpg`
-                        : imagesInventory.noCoverImg
-                    }
-                    title="Book Cover"
-                  />
-                </Hidden>
+                {/* <Hidden xsDown> */}
+
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={
+                    book.cover_i
+                      ? `http://covers.openlibrary.org/b/id/${
+                          book.cover_i
+                        }-M.jpg`
+                      : imagesInventory.noCoverImg
+                  }
+                  title="Book Cover"
+                />
+                {/* </Hidden> */}
 
                 <div className={classes.cardDetails}>
                   <CardContent>

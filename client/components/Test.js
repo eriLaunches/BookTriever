@@ -1,77 +1,75 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import ButtonBase from '@material-ui/core/ButtonBase'
 
 const styles = theme => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing.unit * 2
+  root: {
+    flexGrow: 1,
+    marginTop: 90
   },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120
+  paper: {
+    padding: theme.spacing.unit * 2,
+    margin: 'auto',
+    maxWidth: 500
+  },
+  image: {
+    width: 128,
+    height: 128
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%'
   }
 })
 
-class ControlledOpenSelect extends React.Component {
-  state = {
-    age: '',
-    open: false
-  }
-
-  handleChange = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  handleClose = () => {
-    this.setState({open: false})
-  }
-
-  handleOpen = () => {
-    this.setState({open: true})
-  }
-
-  render() {
-    const {classes} = this.props
-
-    return (
-      <form autoComplete="off">
-        <Button className={classes.button} onClick={this.handleOpen}>
-          Open the select
-        </Button>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
-          <Select
-            open={this.state.open}
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'demo-controlled-open-select'
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      </form>
-    )
-  }
+function ComplexGrid(props) {
+  const {classes} = props
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container spacing={16}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img
+                className={classes.img}
+                alt="complex"
+                src="https://i.ibb.co/bH4S9j3/booktrieverlogo2.png"
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={16}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  Standard license
+                </Typography>
+                <Typography gutterBottom>
+                  Full resolution 1920x1080 • JPEG
+                </Typography>
+                <Typography color="textSecondary">ID: 1030114</Typography>
+              </Grid>
+              <Grid item>
+                <Typography style={{cursor: 'pointer'}}>Remove</Typography>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1">$19.00</Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  )
 }
 
-ControlledOpenSelect.propTypes = {
+ComplexGrid.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(ControlledOpenSelect)
+export default withStyles(styles)(ComplexGrid)
