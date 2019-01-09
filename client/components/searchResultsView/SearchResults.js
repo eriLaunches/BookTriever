@@ -32,10 +32,10 @@ const SearchResults = props => {
             className={classes.grid}
           >
             {' '}
-            <Link to={{pathname: '/singleview', state: {book}}}>
+            <Link to={{pathname: '/book', state: {book}}}>
               <Card className={classes.card}>
                 {/* <Hidden xsDown> */}
-
+                {/* Passing in cover id to retreive image cover from API url */}
                 <CardMedia
                   className={classes.cardMedia}
                   image={

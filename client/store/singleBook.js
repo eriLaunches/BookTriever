@@ -1,5 +1,4 @@
 const axios = require('axios')
-import {createKey} from '../utilities/helperFuncs'
 
 const initialState = {}
 
@@ -23,7 +22,7 @@ export const fetchBook = input => {
       const response = await axios.get(
         `https://openlibrary.org/api/books?bibkeys=ISBN:${input}&jscmd=details&format=json`
       )
-      console.log('SingleBook', response.data)
+      console.log('SingleBook Axios response', response.data)
       let data = response.data[`ISBN:${input}`]
       const action = gotBook(data)
       dispatch(action)

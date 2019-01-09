@@ -1,5 +1,5 @@
 const axios = require('axios')
-import {createKey} from '../utilities/helperFuncs'
+import {createKey} from '../utilities/sortFilterHelper'
 
 //mock data for testing
 let mockBooks = [
