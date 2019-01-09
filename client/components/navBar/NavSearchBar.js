@@ -23,17 +23,12 @@ class SearchResults extends React.Component {
   }
 
   async handleSubmit(event) {
-    console.log('HITTING HERE?')
     event.preventDefault()
     await this.props.onFetchBooks(this.state.searchValue)
     history.push('/search')
   }
 
   render() {
-    // const {handleSubmit, handleChange} = props
-    console.log('NAVBAR props', this.props)
-    console.log('NAVBAR state', this.state)
-    console.log('')
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="nav-search-container">

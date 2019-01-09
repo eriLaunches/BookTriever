@@ -37,7 +37,6 @@ class NavBarContainer extends React.Component {
   }
 
   async handleSubmit(event) {
-    console.log('HITTING HERE?')
     event.preventDefault()
     await this.props.onFetchBooks(this.state.searchValue)
     this.props.history.push('/search')

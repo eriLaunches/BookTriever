@@ -8,7 +8,7 @@ import HomePage from './components/homePage/HomePage'
 import ResultsContainer from './components/searchResultsView/ResultsContainer'
 import NavBarContainer from './components/navBar/NavBarContainer'
 import Test from './components/Test'
-import SingleView from './components/singleBookView/SingleView'
+import SingleView from './components/bookDetailsView/SingleView'
 
 /**
  * COMPONENT
@@ -30,18 +30,8 @@ class Routes extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/home" component={HomePage} />
           <Route path="/search" component={ResultsContainer} />
-
           <Route path="/test" component={Test} />
-
-          <Route name="singleview" path="/:single" component={SingleView} />
-          {isLoggedIn && (
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/homelogin" component={UserHome} />
-            </Switch>
-          )}
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
+          <Route name="book" path="/:single" component={SingleView} />
         </Switch>
       </div>
     )
