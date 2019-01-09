@@ -1,31 +1,30 @@
 import React from 'react'
 
-//This function is used to for Material UI styling for the search results view
-
+//This function is used to style Material UI components for the search results view
 export default theme => ({
+  root: {},
   layout: {
-    marginTop: theme.spacing.unit * 10,
-    width: 'auto',
+    marginTop: theme.spacing.unit * 3,
+    width: '100%',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
+      width: 1100, //adjust width of cards
       marginLeft: 'auto',
       marginRight: 'auto'
     }
   },
   resultsContainer: {
-    display: 'flex',
     flexDirection: 'column'
   },
   card: {
     display: 'flex',
-    marginTop: 15
+    marginTop: 10
   },
   cardDetails: {
-    flex: 1
+    // flex: 1
   },
   cardMedia: {
-    width: 160
+    width: 160 //adjust thumbnail size
   }
 })

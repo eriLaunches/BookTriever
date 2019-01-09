@@ -9,6 +9,7 @@ import ResultsContainer from './components/searchResultsView/ResultsContainer'
 import NavBarContainer from './components/navBar/NavBarContainer'
 import Test from './components/Test'
 import SingleView from './components/singleBookView/SingleView'
+import OutermostContainer from './components/searchResultsView/OutermostContainer'
 
 /**
  * COMPONENT

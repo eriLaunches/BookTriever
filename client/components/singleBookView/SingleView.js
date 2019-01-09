@@ -21,7 +21,7 @@ class SingleView extends React.Component {
 
   render() {
     const selectedBook = this.props.location.state.book
-
+    console.log('singleView book', selectedBook)
     //need to refactor this....not sure why description isn't picked up initially
     let description = !this.props.book.details
       ? 'No description currently exists for this book'
@@ -38,7 +38,7 @@ class SingleView extends React.Component {
           alt="book cover"
         />
         <p>
-          <strong>{selectedBook.title_suggest}</strong>
+          <strong>{selectedBook.title}</strong>
         </p>
         <p>
           by{' '}
@@ -52,7 +52,7 @@ class SingleView extends React.Component {
           {selectedBook.edition_count}{' '}
           {selectedBook.edition_count < 2 ? 'edition' : 'editions'}{' '}
         </p>
-        <p>Description: {description}</p>
+        {/* <p>Description: {description}</p> */}
       </div>
     )
   }

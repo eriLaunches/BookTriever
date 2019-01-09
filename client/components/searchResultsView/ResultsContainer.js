@@ -5,6 +5,7 @@ import {Link, withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {fetchBooks} from '../../store/books.js'
 import SearchResults from './SearchResults'
+import SortDropDown from './SortDropDown'
 import {handleFilter, handleSort} from '../../utils'
 import styles from './styleSearchResults'
 import {withStyles} from '@material-ui/core/styles'
@@ -12,9 +13,17 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import FilterSortMenu from './FilterSortMenu'
 
 //This component serves as the parent container for the search results view
-const sections = ['All Books', 'Ebooks']
+
+const filterOptions = ['All Books', 'Ebooks']
+const sortOptions = [
+  'Relevant',
+  'Most Editions',
+  'First Published',
+  'Most Recent'
+]
 
 class ResultsContainer extends React.Component {
   constructor(props) {
@@ -33,8 +42,12 @@ class ResultsContainer extends React.Component {
   }
 
   //  Everytime selects from a sort or filter, this method will be invoked, which in turns triggers handle filter and handle sort. This allows for sorting on a filtered population.
-  async handleSortFilter(event) {
-    await this.setState({[event.target.name]: event.target.value})
+  async handleSortFilter(event, selection) {
+    console.log('handlesortfilter event', event)
+    console.log('handlesortfilter selection', selection)
+
+    await this.setState({[event]: selection})
+    console.log('state after handlesort', this.state)
     let {sortBy, filterBy} = this.state
     let books = this.props.books
     let filteredBooks = await handleFilter(filterBy, books)
@@ -47,18 +60,13 @@ class ResultsContainer extends React.Component {
     const {currentBooks} = this.state
     console.log('PROP BOOKS in RESULTS CONTAINER', this.props)
     return (
-      <React.Fragment>
+      <div>
         <CssBaseline />
+        <FilterSortMenu handleSortFilter={this.handleSortFilter} />
         <div className={classes.layout}>
-          <Tabs indicatorColor="primary" textColor="primary">
-            <Tab label="All Books" />
-            <Tab label="Ebooks" />
-          </Tabs>
-          {/* Search Results -- listing of books found */}
           <SearchResults books={currentBooks} />
-          {/* End sub featured posts */}
         </div>
-      </React.Fragment>
+      </div>
     )
     // <div>
     //   <div>

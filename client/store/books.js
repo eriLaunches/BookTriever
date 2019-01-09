@@ -57,12 +57,12 @@ export const fetchBooks = input => {
       console.log('hitting fetchBooks thunk:', (count += 1))
       //Potential: break this out into utils function
       const formatInput = input.split(' ').join('+')
-      //Used destructuring to parsed response to get only books object
+      // Used destructuring to parsed response to get only books object
       // const {data: books} = await axios.get(
       //   `http://openlibrary.org/search.json?title=${formatInput}`
       // )
-      // console.log('AXIOS Reponse', books)
-      // const action = gotBooks(books)
+      // // console.log('AXIOS Reponse', books)
+      // const action = gotBooks(books.docs)
       const action = gotBooks(mockBooks) //to delete. Testing.
       dispatch(action)
     } catch (err) {
