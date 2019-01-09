@@ -35,11 +35,7 @@ class ResultsContainer extends React.Component {
 
   //  Everytime selects from a sort or filter, this method will be invoked, which in turns triggers handle filter and handle sort. This allows for sorting on a filtered population.
   async handleSortFilter(event, selection) {
-    console.log('handlesortfilter event', event)
-    console.log('handlesortfilter selection', selection)
-
     await this.setState({[event]: selection})
-    console.log('state after handlesort', this.state)
     let {sortBy, filterBy} = this.state
     let books = this.props.books
     let filteredBooks = await handleFilter(filterBy, books)
@@ -51,7 +47,6 @@ class ResultsContainer extends React.Component {
     const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
     const handleSortFilter = this.handleSortFilter
-    console.log('PROP BOOKS in RESULTS CONTAINER', this.props)
     return (
       <div>
         <CssBaseline />

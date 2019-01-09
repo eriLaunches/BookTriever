@@ -11,6 +11,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import NativeSelect from '@material-ui/core/NativeSelect'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // const styles = theme => ({
 //   root: {
@@ -106,22 +107,23 @@ class NativeSelects extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('sortdropdown state', this.state)
     return (
       <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel shrink>Sort By</InputLabel>
-          <NativeSelect
-            value={this.state.sortBy}
-            onChange={e => this.handleChange(e)}
-          >
-            {/* Potential to store all these sort by options in a separate object and map through */}
-            <option value="relevance">Relevance</option>
-            <option value="most editions">Most Editions</option>
-            <option value="first published">First Published</option>
-            <option value="most recent">Most Recent</option>
-          </NativeSelect>
-        </FormControl>
+        <Tooltip title="Click to sort by options">
+          <FormControl className={classes.formControl}>
+            <InputLabel shrink>Sort By</InputLabel>
+            <NativeSelect
+              value={this.state.sortBy}
+              onChange={e => this.handleChange(e)}
+            >
+              {/* Potential to store all these sort by options in a separate object and map through */}
+              <option value="relevance">Relevance</option>
+              <option value="most editions">Most Editions</option>
+              <option value="first published">First Published</option>
+              <option value="most recent">Most Recent</option>
+            </NativeSelect>
+          </FormControl>
+        </Tooltip>
       </div>
     )
   }
