@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 import {fetchBooks} from '../../store/books.js'
 import history from '../../history'
+import {setStatus} from '../../store/fetchStatus'
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -24,8 +25,9 @@ class SearchResults extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
+    this.props.onSetStatus(true)
     await this.props.onFetchBooks(this.state.searchValue)
-    console.log('here', history)
+    this.props.onSetStatus(false)
     if (history.location !== '/search') {
       history.push('/search')
     }
@@ -55,7 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onFetchBooks: input => dispatch(fetchBooks(input))
+  onFetchBooks: input => dispatch(fetchBooks(input)),
+  onSetStatus: status => dispatch(setStatus(status))
 })
 
 const ConnectSearchResults = connect(mapStateToProps, mapDispatchToProps)(

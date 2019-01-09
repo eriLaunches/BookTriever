@@ -40,7 +40,7 @@ class NativeSelects extends React.Component {
     const {classes} = this.props
     return (
       <div className={classes.root}>
-        <Tooltip title="Click to sort by options">
+        <Tooltip title="Select from dropdown to sort">
           <FormControl className={classes.formControl}>
             <InputLabel shrink>Sort By</InputLabel>
             <NativeSelect

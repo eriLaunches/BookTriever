@@ -1,18 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchBooks} from '../../store/books.js'
+// import {setStatus} from '../../store/fetchStatus.js'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import history from '../../history'
 import imagesInventory from '../../utilities/images'
+import {setStatus} from '../../store/fetchStatus'
 
 //This component serves as the homepage view -- what the user first sees when entering the site. After the user inputs a search value, a get request will be send to the Open Library API. Upon receipt of data and update to the redux store, user will be navigated to the search results view.
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue: '',
-      fetchData: false
+      searchValue: ''
+      // fetchData: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -28,14 +30,16 @@ class HomePage extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     //Pass request to redux thunk  and set the fetchData state accordingly for loading spinner
-    this.setState({fetchData: true})
+    this.props.onSetStatus(true)
+    // this.setState({fetchData: true})
     await this.props.onFetchBooks(this.state.searchValue)
-    await this.setState({fetchData: false})
+    // this.setState({fetchData: false})
+    this.props.onSetStatus(false)
     history.push('/search')
   }
 
   render() {
-    if (this.state.fetchData)
+    if (this.props.fetchStatus)
       return (
         <div id="loader-container">
           <div className="loader" />
@@ -75,11 +79,13 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  books: state.books
+  books: state.books,
+  fetchStatus: state.fetchStatus
 })
 
 const mapDispatchToProps = dispatch => ({
-  onFetchBooks: input => dispatch(fetchBooks(input))
+  onFetchBooks: input => dispatch(fetchBooks(input)),
+  onSetStatus: status => dispatch(setStatus(status))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
