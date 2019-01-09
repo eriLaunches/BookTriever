@@ -1,14 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
 import {fetchBooks} from '../../store/books.js'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import history from '../../history'
+import imagesInventory from '../../images'
 
-//This component serves as the homepage view -- what the user first sees when entering the site
-
+//This component serves as the homepage view -- what the user first sees when entering the site. After the user inputs a search value, a get request will be send to the Open Library API. Upon receipt of data and update to the redux store, user will be navigated to the search results view.
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -36,11 +34,7 @@ class HomePage extends React.Component {
     return (
       <div className="home-container">
         <div id="home-logo-container">
-          <img
-            id="home-logo"
-            src="https://i.ibb.co/bH4S9j3/booktrieverlogo2.png"
-            alt="Website Logo"
-          />
+          <img id="home-logo" src={imagesInventory.logo} alt="Website logo" />
         </div>
         <div>
           <form onSubmit={this.handleSubmit} className="search-container">
@@ -76,6 +70,4 @@ const mapDispatchToProps = dispatch => ({
   onFetchBooks: input => dispatch(fetchBooks(input))
 })
 
-const ConnectHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage)
-
-export default ConnectHomePage
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

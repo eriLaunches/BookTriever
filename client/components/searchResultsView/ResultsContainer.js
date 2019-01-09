@@ -5,9 +5,15 @@ import {Link, withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {fetchBooks} from '../../store/books.js'
 import SearchResults from './SearchResults'
+import SortDropDown from './SortDropDown'
 import {handleFilter, handleSort} from '../../utils'
-import SearchIcon from '@material-ui/icons/Search'
-import Button from '@material-ui/core/Button'
+import styles from './styleSearchResults'
+import {withStyles} from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import FilterMenu from './FilterMenu'
 
 //This component serves as the parent container for the search results view
 
@@ -28,8 +34,12 @@ class ResultsContainer extends React.Component {
   }
 
   //  Everytime selects from a sort or filter, this method will be invoked, which in turns triggers handle filter and handle sort. This allows for sorting on a filtered population.
-  async handleSortFilter(event) {
-    await this.setState({[event.target.name]: event.target.value})
+  async handleSortFilter(event, selection) {
+    console.log('handlesortfilter event', event)
+    console.log('handlesortfilter selection', selection)
+
+    await this.setState({[event]: selection})
+    console.log('state after handlesort', this.state)
     let {sortBy, filterBy} = this.state
     let books = this.props.books
     let filteredBooks = await handleFilter(filterBy, books)
@@ -38,31 +48,43 @@ class ResultsContainer extends React.Component {
   }
 
   render() {
+    const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
+    const handleSortFilter = this.handleSortFilter
     console.log('PROP BOOKS in RESULTS CONTAINER', this.props)
     return (
       <div>
-        <div>
-          <div>
-            <label>Sort by</label>
-            <select name="sortBy" onChange={this.handleSortFilter}>
-              <option value="relevance">Relevance</option>
-              <option value="mostEditions"> Most Editions </option>
-              <option value="firstPublished"> First Published </option>
-              <option value="mostRecent"> Most Recent </option>
-            </select>
-            <label>Filter by</label>
-            <select name="filterBy" onChange={this.handleSortFilter}>
-              <option value="everything">Everything</option>
-              <option value="ebooks"> Ebooks </option>
-            </select>
-          </div>
-          <div>
-            <SearchResults books={currentBooks} />
-          </div>
+        <CssBaseline />
+        <div id="filter-sort-menu">
+          <FilterMenu handleSortFilter={handleSortFilter} />
+          <SortDropDown handleSortFilter={handleSortFilter} />
+        </div>
+        <div className={classes.layout}>
+          <SearchResults books={currentBooks} />
         </div>
       </div>
     )
+    // <div>
+    //   <div>
+    //     <div>
+    //       <label>Sort by</label>
+    //       <select name="sortBy" onChange={this.handleSortFilter}>
+    //         <option value="relevance">Relevance</option>
+    //         <option value="mostEditions"> Most Editions </option>
+    //         <option value="firstPublished"> First Published </option>
+    //         <option value="mostRecent"> Most Recent </option>
+    //       </select>
+    //       <label>Filter by</label>
+    //       <select name="filterBy" onChange={this.handleSortFilter}>
+    //         <option value="everything">Everything</option>
+    //         <option value="ebooks"> Ebooks </option>
+    //       </select>
+    //     </div>
+    //     <div>
+    //       <SearchResults books={currentBooks} />
+    //     </div>
+    //   </div>
+    // </div>
   }
 }
 
@@ -76,4 +98,4 @@ const mapStateToProps = state => ({
 
 const ConnectResultsContainer = connect(mapStateToProps)(ResultsContainer)
 
-export default ConnectResultsContainer
+export default withStyles(styles)(ConnectResultsContainer)

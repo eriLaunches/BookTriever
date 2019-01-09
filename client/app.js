@@ -5,7 +5,6 @@ import Routes from './routes'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 import history from './history'
 
-//Adding Material UI theme
 class App extends React.Component {
   constructor() {
     super()
@@ -15,8 +14,8 @@ class App extends React.Component {
     this.switchThemeColor = this.switchThemeColor.bind(this)
   }
 
+  //Adding Material UI theme
   switchThemeColor() {
-    console.log('hitting switch theme?')
     this.state.themeColor === 'light'
       ? this.setState({themeColor: 'dark'})
       : this.setState({themeColor: 'light'})
@@ -43,7 +42,6 @@ class App extends React.Component {
         }
       }
     })
-    console.log('APP STATE', this.state)
     return (
       <div>
         <MuiThemeProvider theme={theme}>

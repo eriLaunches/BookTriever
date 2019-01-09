@@ -25,15 +25,15 @@ export const handleSort = (sortBy, filteredBooks) => {
   switch (sortBy) {
     case 'relevance':
       break
-    case 'mostEditions':
+    case 'most editions':
       sortFilteredBooks.sort((a, b) => b.edition_count - a.edition_count)
       break
-    case 'firstPublished':
+    case 'first published':
       sortFilteredBooks.sort(
         (a, b) => a.first_publish_year - b.first_publish_year
       )
       break
-    case 'mostRecent':
+    case 'most recent':
       sortFilteredBooks.sort(
         (a, b) => b.first_publish_year - a.first_publish_year
       )

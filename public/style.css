@@ -128,3 +128,8 @@ input:focus::-webkit-input-placeholder {
   margin-top: 0.4em;
   margin-right: 0.3em;
 }
+
+/* <================= Filter-Sort Menu =================> */
+#filter-sort-menu {
+  display: inline-flex;
+}
