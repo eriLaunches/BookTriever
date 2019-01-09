@@ -1,9 +1,6 @@
 import React from 'react'
-import {Navbar} from './components'
-import NavBarContainer from './components/navBar/NavBarContainer'
 import Routes from './routes'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
-import history from './history'
 
 class App extends React.Component {
   constructor() {
@@ -14,7 +11,6 @@ class App extends React.Component {
     this.switchThemeColor = this.switchThemeColor.bind(this)
   }
 
-  //Adding Material UI theme
   switchThemeColor() {
     this.state.themeColor === 'light'
       ? this.setState({themeColor: 'dark'})
@@ -45,8 +41,6 @@ class App extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-          {/* <Navbar /> */}
-          {/* <NavBarContainer /> */}
           <Routes switchThemeColor={this.switchThemeColor} />
         </MuiThemeProvider>
       </div>

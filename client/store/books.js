@@ -1,5 +1,4 @@
 const axios = require('axios')
-import {createKey} from '../utilities/sortFilterHelper'
 
 //mock data for testing
 let mockBooks = [
@@ -40,11 +39,11 @@ let mockBooks = [
 const initialState = []
 
 //ACTION TYPES
-const GOT_BOOKS = 'GOT_BOOKS'
+const SET_BOOKS = 'SET_BOOKS'
 
 //ACTION CREATORS
-export const gotBooks = books => ({
-  type: GOT_BOOKS,
+export const setBooks = books => ({
+  type: SET_BOOKS,
   books
 })
 
@@ -62,7 +61,7 @@ export const fetchBooks = input => {
         `http://openlibrary.org/search.json?title=${formatInput}`
       )
       // console.log('AXIOS Reponse', books)
-      const action = gotBooks(books.docs)
+      const action = setBooks(books.docs)
       // const action = gotBooks(mockBooks) //to delete. Testing.
       dispatch(action)
     } catch (err) {
@@ -74,7 +73,7 @@ export const fetchBooks = input => {
 //REDUCER
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GOT_BOOKS:
+    case SET_BOOKS:
       return [...action.books]
     default:
       return state

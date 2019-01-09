@@ -21,7 +21,8 @@ class ResultsContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentBooks: [], //stores current state of books including after user filters and/or sorts population
+      allBooks: [], //stores the current population of books
+      currentBooks: [], // current state of books including after user filters and/or sorts population
       sortBy: 'relevance',
       filterBy: 'everything'
     }
@@ -30,10 +31,24 @@ class ResultsContainer extends React.Component {
 
   componentDidMount() {
     //set initial state of books to be the entire book population fetched from API
-    this.setState({currentBooks: [...this.props.books]})
+    this.setState({
+      allBooks: this.props.books,
+      currentBooks: this.props.books
+    })
   }
 
-  //  Everytime selects from a sort or filter, this method will be invoked, which in turns triggers handle filter and handle sort. This allows for sorting on a filtered population.
+  //Update state to trigger if there are changes to the redux store when user performs a new search in navbar
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentdidUpdate prevProps', prevProps)
+    console.log('componentdidUpdate prevState', prevState)
+    if (prevProps.books !== prevState.allBooks) {
+      this.setState({
+        allBooks: this.props.books,
+        currentBooks: this.props.books
+      })
+    }
+  }
+  //  Everytime selects from a sort or filter, this method will be invoked, which in turns triggers handle filter and handle sort helper functions. This allows for sorting on top of a filtered population.
   async handleSortFilter(event, selection) {
     await this.setState({[event]: selection})
     let {sortBy, filterBy} = this.state
@@ -47,6 +62,10 @@ class ResultsContainer extends React.Component {
     const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
     const handleSortFilter = this.handleSortFilter
+
+    console.log('search results container props', this.props)
+    console.log('search results container state', this.state)
+
     return (
       <div>
         <CssBaseline />

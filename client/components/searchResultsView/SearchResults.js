@@ -18,6 +18,7 @@ import ButtonBase from '@material-ui/core/ButtonBase'
 const SearchResults = props => {
   const books = props.books
   const {classes} = props //Style with Material UI
+  console.log('Search Results Props', props)
   return books.length ? (
     <div>
       <Typography> {books.length} results found </Typography>
