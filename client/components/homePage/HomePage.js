@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchBooks} from '../../store/books.js'
+// import {setStatus} from '../../store/fetchStatus.js'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import history from '../../history'
@@ -28,9 +29,11 @@ class HomePage extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     //Pass request to redux thunk  and set the fetchData state accordingly for loading spinner
+    // this.props.onSetStatus(true)
     this.setState({fetchData: true})
     await this.props.onFetchBooks(this.state.searchValue)
-    await this.setState({fetchData: false})
+    // await this.props.onSetStatus(false)
+    this.setState({fetchData: false})
     history.push('/search')
   }
 
@@ -76,10 +79,12 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => ({
   books: state.books
+  // fetchStatus: state.fetchStatus
 })
 
 const mapDispatchToProps = dispatch => ({
   onFetchBooks: input => dispatch(fetchBooks(input))
+  // onSetStatus: status => dispatch(setStatus(status))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

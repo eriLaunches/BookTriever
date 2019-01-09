@@ -39,8 +39,6 @@ class ResultsContainer extends React.Component {
 
   //Update state to trigger if there are changes to the redux store when user performs a new search in navbar
   componentDidUpdate(prevProps, prevState) {
-    console.log('componentdidUpdate prevProps', prevProps)
-    console.log('componentdidUpdate prevState', prevState)
     if (prevProps.books !== prevState.allBooks) {
       this.setState({
         allBooks: this.props.books,
@@ -62,9 +60,6 @@ class ResultsContainer extends React.Component {
     const {classes} = this.props //Use to targeting Material UI elements for styling
     const {currentBooks} = this.state
     const handleSortFilter = this.handleSortFilter
-
-    console.log('search results container props', this.props)
-    console.log('search results container state', this.state)
 
     return (
       <div>

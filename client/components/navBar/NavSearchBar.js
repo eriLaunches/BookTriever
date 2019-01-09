@@ -24,8 +24,9 @@ class SearchResults extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
+    this.setState({fetchData: true})
     await this.props.onFetchBooks(this.state.searchValue)
-    console.log('here', history)
+    await this.setState({fetchData: false})
     if (history.location !== '/search') {
       history.push('/search')
     }
