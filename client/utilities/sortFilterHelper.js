@@ -1,5 +1,3 @@
-import ReactDOM from 'react-dom'
-
 // Helper function to handle filtering
 export const handleFilter = (filterBy, books) => {
   let filteredBooks = books

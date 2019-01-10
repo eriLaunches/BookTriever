@@ -1,30 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import {sortStyles} from './material-styles'
 import {withStyles} from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FilledInput from '@material-ui/core/FilledInput'
 import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import Tooltip from '@material-ui/core/Tooltip'
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    // flexWrap: 'wrap',
-    marginTop: 96,
-    marginLeft: theme.spacing.unit * 20
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120
-  }
-})
 
 class NativeSelects extends React.Component {
   state = {
@@ -37,7 +17,7 @@ class NativeSelects extends React.Component {
   }
 
   render() {
-    const {classes} = this.props
+    const {classes} = this.props //for Material Ui styling
     return (
       <div className={classes.root}>
         <Tooltip title="Select from dropdown to sort">
@@ -47,7 +27,7 @@ class NativeSelects extends React.Component {
               value={this.state.sortBy}
               onChange={e => this.handleChange(e)}
             >
-              {/* Potential to store all these sort by options in a separate object and map through */}
+              {/* Potential to store options in a separate object and map through for scalability */}
               <option value="relevance">Relevance</option>
               <option value="most editions">Most Editions</option>
               <option value="first published">First Published</option>
@@ -60,8 +40,4 @@ class NativeSelects extends React.Component {
   }
 }
 
-NativeSelects.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(NativeSelects)
+export default withStyles(sortStyles)(NativeSelects)

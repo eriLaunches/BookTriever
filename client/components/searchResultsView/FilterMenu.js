@@ -1,19 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {filterStyles} from './material-styles'
 import {withStyles} from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import EbooksIcon from '@material-ui/icons/Phonelink'
 import BooksIcon from '@material-ui/icons/ViewColumn'
 import Tooltip from '@material-ui/core/Tooltip'
-
-const styles = {
-  root: {
-    flexGrow: 1,
-    marginTop: 86,
-    marginLeft: 70
-  }
-}
 
 class IconLabelTabs extends React.Component {
   state = {
@@ -25,7 +17,7 @@ class IconLabelTabs extends React.Component {
   }
 
   render() {
-    const {classes} = this.props
+    const {classes} = this.props //for Material UI styling
 
     return (
       <Tabs
@@ -57,8 +49,4 @@ class IconLabelTabs extends React.Component {
   }
 }
 
-IconLabelTabs.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(IconLabelTabs)
+export default withStyles(filterStyles)(IconLabelTabs)

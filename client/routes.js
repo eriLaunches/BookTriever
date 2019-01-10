@@ -1,29 +1,26 @@
 import React from 'react'
 import {withRouter, Route, Switch} from 'react-router-dom'
-import HomePage from './components/homePage/HomePage'
+import HomeContainer from './components/homePage/HomeContainer'
 import ResultsContainer from './components/searchResultsView/ResultsContainer'
-import NavBarContainer from './components/navBar/NavBarContainer'
-import Test from './components/Test'
-import SingleView from './components/bookDetailsView/SingleView'
+import NavbarContainer from './components/navbar/NavContainer'
+import BookContainer from './components/bookDetailsView/BookContainer'
 
 const Routes = props => {
   return (
     <div>
-      <NavBarContainer {...props} />
+      <NavbarContainer {...props} />
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={HomePage} />
-        <Route path="/home" component={HomePage} />
+        <Route exact path="/" component={HomeContainer} />
         <Route path="/search" component={ResultsContainer} />
-        <Route path="/test" component={Test} />
-        <Route path="/book" component={SingleView} />
+        <Route path="/book" component={BookContainer} />
+
         {/* Displays our Home component as a fallback */}
-        <Route component={HomePage} />
+        <Route component={HomeContainer} />
       </Switch>
     </div>
   )
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
+// `withRouter` wrapper ensures that updates are not blocked when the url changes
 export default withRouter(Routes)
