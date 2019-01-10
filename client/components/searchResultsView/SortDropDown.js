@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import Tooltip from '@material-ui/core/Tooltip'
+import purple from '@material-ui/core/colors/purple'
 
 class NativeSelects extends React.Component {
   state = {

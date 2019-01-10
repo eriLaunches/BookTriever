@@ -1,7 +1,7 @@
 #  BookTriever (Amex Challenge) 📚
 
 BookTriever is a web application that allows book worms to easily search for the book of their dreams.
-It is meant to be a fuss-free and intuitive app for users to search,view various results that match with their search criteria, and view details for a book that they are interested in reading.
+It is meant to be a fuss-free and intuitive app for users to search, view various results that match with their search criteria, and view details for a book that they are interested in reading.
 
 ### App Deployed at
 
@@ -16,11 +16,11 @@ Thank you for this fun and challenging assignment and for your consideration of 
 
 1.  JavaScript, React, Redux, HTML, CSS, Material UI
 
-### Breaking down the application
+### User Experience & Application Breakdown
 
 The application can be split into 4 parts/views:
 
-1.  Home View: What the user sees when they first enter the site. The UI is sleek and simple with the app logo and search bar. CSS was mainly used to stylize this view. Once the user provides a search input, the input is formatted and a GET request is made to Open Library API with the input passed in. The response object is destructured and stored in the Redux store.
+1.  Home View: What the user sees when they first enter the site. The UI is sleek and simple with the app logo and search bar. CSS was mainly used to stylize this view. Once the user provides a search input, the input is formatted and a GET request is made to Open Library API with the input passed in. The response object is destructured and stored in the Redux store. If the user does not provide an input before submitting, an alert notfication will appear.
 2.  Search Results View: Upon submitting their search, the user will be navigated to this view showing a listing of books results matching their search criteria. Here, they can also filter and sort (including sorting on a filtered population). When the user hovers over the sort and filter icons, there are instructions on what each menu does. The user can also use the Navigation Bar at the top to search for another book or click on a book result to view its details.
 3.  Detail Book View: The user can view details relating to the book including book cover, editions, subjects, and main characters. All this information is based on availability within Open API. The user can also choose to search for another book in the Navigation Bar
 4.  Navigation Bar with Search input field: This navagation bar appears in both the Search Results view and the Detail Book View. The user can choose to search for a book at any time during the browsing process. They can also click on the app logo to navigate to the home view. A cool feature implemented here is the switching to light/dark mode. A user can toggle the icon and the application will switch themes (light background to dark background).

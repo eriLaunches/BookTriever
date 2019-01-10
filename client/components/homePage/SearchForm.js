@@ -27,7 +27,6 @@ class SearchForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     //If user doesn't put a search value, trigger alert message
-    console.log('HERE', this.state)
     if (this.state.searchValue === '') {
       this.setState({alert: true})
     } else {
