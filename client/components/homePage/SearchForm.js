@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchBooks} from '../../store/books.js'
 import {setStatus} from '../../store/fetchStatus'
 import history from '../../history'
+import Alert from './Alert'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 
@@ -10,7 +11,8 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue: ''
+      searchValue: '',
+      alert: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -24,14 +26,27 @@ class SearchForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    //Pass request to redux thunk and set the fetchData state accordingly to show loading spinner while data is being fetched
-    this.props.onSetStatus(true)
-    await this.props.onFetchBooks(this.state.searchValue)
-    this.props.onSetStatus(false)
-    history.push('/search')
+    //If user doesn't put a search value, trigger alert message
+    console.log('HERE', this.state)
+    if (this.state.searchValue === '') {
+      this.setState({alert: true})
+    } else {
+      //Pass request to redux thunk and set the fetchData state accordingly to show loading spinner while data is being fetched
+      this.props.onSetStatus(true)
+      await this.props.onFetchBooks(this.state.searchValue)
+      this.props.onSetStatus(false)
+
+      history.push('/search')
+    }
+  }
+
+  handleAlert() {
+    //Updates alert to false once user closes notification. Handles form validation for when user submits a blank search value
+    this.setState({alert: false})
   }
 
   render() {
+    let {alert} = this.state
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="search-container">
@@ -53,6 +68,11 @@ class SearchForm extends React.Component {
             <SearchIcon id="home-search-icon" />
           </Button>
         </form>
+        {alert ? (
+          <Alert alert={this.state.alert} handleAlert={this.handleAlert} />
+        ) : (
+          ''
+        )}
       </div>
     )
   }
