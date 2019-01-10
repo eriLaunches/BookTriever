@@ -41,7 +41,7 @@ JavaScript, React, Redux, HTML, CSS, Material UI
 
 ### User Experience & Application Breakdown
 
-* The application can be split into 4 views:
+The application can be split into 4 views:
 
   <details><summary>Click to Open</summary>
 
