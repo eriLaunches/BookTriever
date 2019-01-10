@@ -42,7 +42,8 @@ JavaScript, React, Redux, HTML, CSS, Material UI
 ### User Experience & Application Breakdown
 
   <details><summary>Click to Open</summary>
-The application can be split into 4 views:
+
+**The application can be split into 4 views:**
 
 1.  🏠 **Home View**: What the user sees when they first enter the site. The UI is sleek and simple with the app logo and search bar. CSS was mainly used to stylize this view. Once the user provides a search input, the input is formatted and a GET request is made to Open Library Search API using formatted input. The response object is destructured and stored in the Redux store. If the user does not provide an input before submitting, an alert notfication will appear as part of form validation.
 
