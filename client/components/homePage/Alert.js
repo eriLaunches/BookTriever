@@ -24,7 +24,7 @@ class AlertDialog extends React.Component {
     return (
       <div>
         <Dialog open={this.state.open} onClose={this.handleClose}>
-          <DialogTitle>{'Invalid Search Entry'}</DialogTitle>
+          <DialogTitle>Empty search input not allowed</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Please enter a book title in the search field before continuing

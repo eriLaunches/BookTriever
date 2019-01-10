@@ -3,12 +3,13 @@ import {connect} from 'react-redux'
 import {fetchBook} from '../../store/singleBook.js'
 import Description from './Description'
 import Header from './Header'
+import BookCover from './BookCover.js'
 import {identifierHelper} from '../../utilities/identifierHelper'
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import styles from './material-styles.js'
-import BookCover from './BookCover.js'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 //This component displays the book details view
 
@@ -36,18 +37,21 @@ class BookContainer extends React.Component {
       )
     else
       return (
-        <div className={classes.root}>
-          <Paper className={classes.mainFeaturedPost}>
-            <Grid container>
-              <Grid item md={9}>
-                <div className={classes.mainFeaturedPostContent}>
-                  <Header selectedBook={selectedBook} />
-                  <Description selectedBook={selectedBook} book={book} />
-                </div>
+        <div>
+          <CssBaseline />
+          <div className={classes.root}>
+            <Paper className={classes.mainFeaturedPost}>
+              <Grid container>
+                <Grid item md={9}>
+                  <div className={classes.mainFeaturedPostContent}>
+                    <Header selectedBook={selectedBook} />
+                    <Description selectedBook={selectedBook} book={book} />
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-            <BookCover selectedBook={selectedBook} />
-          </Paper>
+              <BookCover selectedBook={selectedBook} />
+            </Paper>
+          </div>
         </div>
       )
   }
