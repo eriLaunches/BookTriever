@@ -14,7 +14,7 @@ const BookCover = props => {
           alt="complex"
           src={
             selectedBook.cover_i
-              ? `http://covers.openlibrary.org/b/id/${
+              ? `https://covers.openlibrary.org/b/id/${
                   selectedBook.cover_i
                 }-L.jpg`
               : imagesInventory.noCoverImg
