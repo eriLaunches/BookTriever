@@ -3,29 +3,34 @@ const axios = require('axios')
 const initialState = {}
 
 //ACTION TYPES
-const GOT_BOOK = 'GOT_BOOK'
+const SET_BOOK = 'GOT_BOOK'
 
 //ACTION CREATORS
-export const gotBook = book => ({
-  type: GOT_BOOK,
+export const setBook = book => ({
+  type: SET_BOOK,
   book
 })
 
-//THUNK CREATORS
-//searchValue is input from user (i.e. user enters in book title in the search field)
-export const fetchBook = input => {
+//THUNK CREATOR
+//Passing in type (i.e. isbn,oclc,lccn,olid) and corresponding id to obtain book description from Open Libr Book API. If book description is available, then dispatch action to update store.
+export const fetchBook = identifier => {
   return async dispatch => {
     try {
       console.log('hitting this fetch single book thunk?')
-      //Potential: break this out into utils function
-
       const response = await axios.get(
-        `https://openlibrary.org/api/books?bibkeys=ISBN:${input}&jscmd=details&format=json`
+        `https://openlibrary.org/api/books?bibkeys=${identifier.type}:${
+          identifier.id
+        }&jscmd=details&format=json`
       )
       console.log('SingleBook Axios response', response.data)
-      let data = response.data[`ISBN:${input}`]
-      const action = gotBook(data)
-      dispatch(action)
+      console.log('THUNK', response.data)
+      let data = response.data[`${identifier.type}:${identifier.id}`]
+      if (data.details.description) {
+        const action = setBook(data.details)
+        dispatch(action)
+      } else {
+        dispatch(setBook(initialState))
+      }
     } catch (err) {
       console.log(err)
     }
@@ -35,7 +40,7 @@ export const fetchBook = input => {
 //REDUCER
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GOT_BOOK:
+    case SET_BOOK:
       return {...action.book}
     default:
       return state

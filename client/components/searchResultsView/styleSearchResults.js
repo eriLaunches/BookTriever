@@ -1,6 +1,5 @@
-import React from 'react'
+//For styling of Material UI elements for the search results view
 
-//This function is used to style Material UI components for the search results view
 export default theme => ({
   root: {},
   layout: {
@@ -25,6 +24,7 @@ export default theme => ({
     // flex: 1
   },
   cardMedia: {
-    width: 160 //adjust thumbnail size
+    width: 160
+    //adjust thumbnail size
   }
 })

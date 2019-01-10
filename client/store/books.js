@@ -56,7 +56,6 @@ export const fetchBooks = input => {
       console.log('hitting fetchBooks thunk:', (count += 1))
       //Potential: break this out into utils function
       const formatInput = input.split(' ').join('+')
-      console.log('formatInout', formatInput)
       // Used destructuring to parsed response to get only books object
       const {data: books} = await axios.get(
         `http://openlibrary.org/search.json?title=${formatInput}`
