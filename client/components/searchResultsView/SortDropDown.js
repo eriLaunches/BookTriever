@@ -27,7 +27,6 @@ class NativeSelects extends React.Component {
             <Select
               value={this.state.sortBy}
               onChange={e => this.handleChange(e)}
-              displayEmpty
             >
               {/* Potential to store options in a separate object and map through for scalability */}
               <MenuItem value="relevance">Relevance</MenuItem>

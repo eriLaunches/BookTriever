@@ -37,5 +37,6 @@ export const handleSort = (sortBy, filteredBooks) => {
     default:
       break
   }
+
   return sortFilteredBooks
 }
