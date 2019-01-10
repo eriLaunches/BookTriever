@@ -2,22 +2,13 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+input {
+  font-size: 16px;
 }
 
 /* <================= HOMEPAGE VIEW =================> */
@@ -79,6 +70,20 @@ form div {
 }
 
 input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+/* Firefox < 19 */
+input:focus:-moz-placeholder {
+  opacity: 0;
+}
+/* Firefox > 19 */
+input:focus::-moz-placeholder {
+  opacity: 0;
+}
+
+/* Internet Explorer 10 */
+input:focus:-ms-input-placeholder {
   opacity: 0;
 }
 

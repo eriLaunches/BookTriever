@@ -1,7 +1,7 @@
 # BookTriever (Amex Challenge) 📚
 
 BookTriever is a web application that allows book worms to easily search for the book of their dreams.
-It is meant to be a fuss-free and intuitive app for users to search,view various results that match with their search criteria, and view details for books that they are interested in reading.
+It is meant to be a fuss-free and intuitive app for users to search,view various results that match with their search criteria, and view details for a book that they are interested in reading.
 
 ## App Deployed at
 
@@ -28,7 +28,6 @@ The application can be split into 4 parts/views:
 1.  Fork and clone this repo
 2.  `npm install`
 3.  Start the build process and your application with: `npm run start-dev`. If you are using Windows, you may need to execute `npm run start-server` and `npm run build-watch` separately (in their own terminal tabs).
-4.  Seed database by executing `npm run seed`
 
 ## Future improvements/add-ons to the application
 

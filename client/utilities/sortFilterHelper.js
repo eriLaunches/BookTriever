@@ -1,8 +1,6 @@
 import ReactDOM from 'react-dom'
 
-//This document stores all the helper functions used throughout the application
-
-// helper function to handle filtering
+// Helper function to handle filtering
 export const handleFilter = (filterBy, books) => {
   let filteredBooks = books
   switch (filterBy) {
@@ -18,7 +16,7 @@ export const handleFilter = (filterBy, books) => {
   return filteredBooks
 }
 
-// helper function to handle sorting
+// Helper function to handle sorting
 export const handleSort = (sortBy, filteredBooks) => {
   //making a copy  of filteredBooks to prevent mutation
   let sortFilteredBooks = filteredBooks.slice()

@@ -32,9 +32,11 @@ const SearchResults = props => {
             className={classes.grid}
           >
             {' '}
-            <Link to={{pathname: '/book', state: {book}}}>
+            <Link
+              to={{pathname: '/book', state: {book}}}
+              style={{textDecoration: 'none'}}
+            >
               <Card className={classes.card}>
-                {/* <Hidden xsDown> */}
                 {/* Passing in cover id to retreive image cover from API url */}
                 <CardMedia
                   className={classes.cardMedia}
@@ -47,8 +49,6 @@ const SearchResults = props => {
                   }
                   title="Book Cover"
                 />
-                {/* </Hidden> */}
-
                 <div className={classes.cardDetails}>
                   <CardContent>
                     <Typography component="h2" variant="h5">

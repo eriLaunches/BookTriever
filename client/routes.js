@@ -16,7 +16,9 @@ const Routes = props => {
         <Route path="/home" component={HomePage} />
         <Route path="/search" component={ResultsContainer} />
         <Route path="/test" component={Test} />
-        <Route name="book" path="/:single" component={SingleView} />
+        <Route path="/book" component={SingleView} />
+        {/* Displays our Home component as a fallback */}
+        <Route component={HomePage} />
       </Switch>
     </div>
   )
