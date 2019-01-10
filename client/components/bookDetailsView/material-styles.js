@@ -1,4 +1,5 @@
 //Styling for Material UI elements
+
 const styles = theme => ({
   mainFeaturedPost: {
     display: 'flex',
@@ -19,8 +20,7 @@ const styles = theme => ({
   image: {
     margin: 'auto',
     marginRight: theme.spacing.unit * 8,
-    paddingTop: 30,
-    paddingBottom: 50
+    paddingTop: theme.spacing.unit * 5
   }
 })
 

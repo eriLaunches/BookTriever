@@ -1,7 +1,4 @@
-//i.ibb.co/hRdD1pr/no-cover-img.jpg
-import ReactDOM from 'react-dom'
-
-//This document stores images used throughout the application
+//Central location for external images used in web application for components to leverage
 
 const imagesInventory = {
   logo: 'https://i.ibb.co/bH4S9j3/booktrieverlogo2.png',

@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Button from '@material-ui/core/Button'
-import SearchIcon from '@material-ui/icons/Search'
 import {fetchBooks} from '../../store/books.js'
-import history from '../../history'
 import {setStatus} from '../../store/fetchStatus'
+import history from '../../history'
+import SearchIcon from '@material-ui/icons/Search'
+import Button from '@material-ui/core/Button'
 
-class SearchResults extends React.Component {
+class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,7 +17,6 @@ class SearchResults extends React.Component {
   }
 
   handleChange(event) {
-    //set state for user search value
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -25,27 +24,34 @@ class SearchResults extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
+    //Pass request to redux thunk and set the fetchData state accordingly to show loading spinner while data is being fetched
     this.props.onSetStatus(true)
     await this.props.onFetchBooks(this.state.searchValue)
     this.props.onSetStatus(false)
-    if (history.location !== '/search') {
-      history.push('/search')
-    }
+    history.push('/search')
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit} className="nav-search-container">
-          <label htmlFor="nav-searchbar" />
+        <form onSubmit={this.handleSubmit} className="search-container">
+          <label htmlFor="home-searchbar" />
           <input
-            id="nav-searchbar"
+            id="home-searchbar"
             name="searchValue"
             type="text"
-            placeholder="Search for more books..."
+            placeholder="Please enter a book title..."
             onChange={this.handleChange}
           />
-          <SearchIcon id="nav-search-icon" type="submit" />
+          <Button
+            id="home-search-btn"
+            type="submit"
+            variant="contained"
+            color="secondary"
+          >
+            Search
+            <SearchIcon id="home-search-icon" />
+          </Button>
         </form>
       </div>
     )
@@ -53,7 +59,8 @@ class SearchResults extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  books: state.books
+  books: state.books,
+  fetchStatus: state.fetchStatus
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -61,8 +68,4 @@ const mapDispatchToProps = dispatch => ({
   onSetStatus: status => dispatch(setStatus(status))
 })
 
-const ConnectSearchResults = connect(mapStateToProps, mapDispatchToProps)(
-  SearchResults
-)
-
-export default ConnectSearchResults
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm)

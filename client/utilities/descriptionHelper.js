@@ -1,3 +1,5 @@
+//Helper function that picks out the relevant book details (i.e. subject, place, description) in the book object, stores details in a description object, and returns description object for component to use.
+
 export const addSeparator = arr => {
   return arr.join(' | ')
 }
