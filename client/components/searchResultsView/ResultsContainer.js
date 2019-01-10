@@ -28,7 +28,6 @@ class ResultsContainer extends React.Component {
       allBooks: this.props.books,
       currentBooks: this.props.books
     })
-    localStorage.setItem('books', JSON.stringify(this.state.currentBooks))
   }
 
   componentDidUpdate(prevProps, prevState) {

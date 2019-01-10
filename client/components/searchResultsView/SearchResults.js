@@ -11,7 +11,6 @@ import CardMedia from '@material-ui/core/CardMedia'
 
 const SearchResults = props => {
   let books = props.books
-  if (!books.length) books = JSON.parse(localStorage.getItem('books'))
   const {classes} = props //for Material UI styling
 
   return books.length ? (

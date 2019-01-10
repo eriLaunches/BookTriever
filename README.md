@@ -1,4 +1,4 @@
-#  BookTriever (Amex Challenge) 📚
+# BookTriever (Amex Challenge) 📚
 
 BookTriever is a web application that allows book worms to easily search for the book of their dreams.
 It is meant to be a fuss-free and intuitive app for users to search, view various results that match with their search criteria, and view details for a book that they are interested in reading.
@@ -38,4 +38,4 @@ The application can be split into 4 parts/views:
 3.  Include additional additional filtering and sorting options
 4.  Refactor codebase to be more dry and modular. Think about different helper functions that can be used to acheive dissection/slicing/formatting of data to fit with this application
 5.  Add in an about me page that details the features of the site
-6.  Add in additional features that enhance user experience and/or help with faster runtimes. Including but not limited to the following: lazy scroll/infinite scrolling/pagination, additional search options, progress bar/loading bar.
+6.  Add in additional features that enhance user experience and/or help with faster runtimes. Including but not limited to the following: lazy scroll/infinite scrolling/pagination, caching using localStorage to preserve state when user refreshed page, additional search options
