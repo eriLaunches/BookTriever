@@ -1,13 +1,13 @@
-# BookTriever (Amex Challenge) 📚
+#  BookTriever (Amex Challenge) 📚
 
 BookTriever is a web application that allows book worms to easily search for the book of their dreams.
 It is meant to be a fuss-free and intuitive app for users to search, view various results that match with their search criteria, and view details for a book that they are interested in reading.
 
-### App Deployed At
+### App Deployed at
 
 https://booktriever.herokuapp.com/
 
-### Developer's Message
+### Developer's message
 
 I had a lot of fun and learned a lot while building BookTriever as part of the Amex Library Coding Challenge. The challenge not only helped me get more practice on the front-end tech stack that I adore, but also thinking more about scalability and keeping code dry and modular. At the bottom of this README, I have included a section on future improvements/add-ons for this app.
 Thank you for this fun and challenging assignment and for your consideration of my candidacy!
