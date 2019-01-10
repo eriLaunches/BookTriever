@@ -4,6 +4,7 @@ import {fetchBooks} from '../../store/books.js'
 import {setStatus} from '../../store/fetchStatus'
 import history from '../../history'
 import SearchIcon from '@material-ui/icons/Search'
+import Button from '@material-ui/core/Button'
 
 class NavSearchForm extends React.Component {
   constructor(props) {
@@ -43,7 +44,9 @@ class NavSearchForm extends React.Component {
             placeholder="Search for more books..."
             onChange={this.handleChange}
           />
-          <SearchIcon id="nav-search-icon" type="submit" />
+          <Button type="submit" id="nav-search-icon">
+            <SearchIcon />
+          </Button>
         </form>
       </div>
     )

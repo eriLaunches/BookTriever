@@ -16,6 +16,7 @@ class SearchForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleAlert = this.handleAlert.bind(this)
   }
 
   handleChange(event) {
