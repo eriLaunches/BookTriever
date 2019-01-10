@@ -6,8 +6,8 @@ import IconButton from '@material-ui/core/IconButton'
 const NavThemeSwitch = props => {
   return (
     <Tooltip title="Switch between light and dark mode">
-      <IconButton color="inherit">
-        <SwitchThemeIcon onClick={props.switchThemeColor} fontSize="small" />
+      <IconButton color="inherit" onClick={props.switchThemeColor}>
+        <SwitchThemeIcon fontSize="small" />
       </IconButton>
     </Tooltip>
   )

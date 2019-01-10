@@ -14,7 +14,6 @@ const Description = props => {
     bookDescription
   } = description
 
-  console.log('Description', description)
   return (
     <div>
       <Typography variant="subtitle1" paragraph>
