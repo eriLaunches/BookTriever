@@ -36,7 +36,7 @@ const SearchResults = props => {
                   className={classes.cardMedia}
                   image={
                     book.cover_i
-                      ? `http://covers.openlibrary.org/b/id/${
+                      ? `https://covers.openlibrary.org/b/id/${
                           book.cover_i
                         }-M.jpg`
                       : imagesInventory.noCoverImg
