@@ -3,9 +3,9 @@ import {sortStyles} from './material-styles'
 import {withStyles} from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
-import NativeSelect from '@material-ui/core/NativeSelect'
+import Select from '@material-ui/core/Select'
 import Tooltip from '@material-ui/core/Tooltip'
-import purple from '@material-ui/core/colors/purple'
+import MenuItem from '@material-ui/core/MenuItem'
 
 class NativeSelects extends React.Component {
   state = {
@@ -21,19 +21,20 @@ class NativeSelects extends React.Component {
     const {classes} = this.props //for Material Ui styling
     return (
       <div className={classes.root}>
-        <Tooltip title="Select from dropdown to sort">
+        <Tooltip title="Select from dropdown to sort" placement="right">
           <FormControl className={classes.formControl}>
             <InputLabel shrink>Sort By</InputLabel>
-            <NativeSelect
+            <Select
               value={this.state.sortBy}
               onChange={e => this.handleChange(e)}
+              displayEmpty
             >
               {/* Potential to store options in a separate object and map through for scalability */}
-              <option value="relevance">Relevance</option>
-              <option value="most editions">Most Editions</option>
-              <option value="first published">First Published</option>
-              <option value="most recent">Most Recent</option>
-            </NativeSelect>
+              <MenuItem value="relevance">Relevance</MenuItem>
+              <MenuItem value="most editions">Most Editions</MenuItem>
+              <MenuItem value="first published">First Published</MenuItem>
+              <MenuItem value="most recent">Most Recent</MenuItem>
+            </Select>
           </FormControl>
         </Tooltip>
       </div>

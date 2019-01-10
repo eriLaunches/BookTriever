@@ -8,7 +8,7 @@ import history from '../../history'
 const NavLogo = () => {
   return (
     <Typography variant="h6" color="inherit">
-      <Tooltip title="Navigate to Home">
+      <Tooltip title="Navigate to Home" placement="right">
         <Link to="/">
           <img
             onClick={() => history.push('/')}
