@@ -2,6 +2,8 @@ import React from 'react'
 import Routes from './routes'
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 
+// Applied Material UI theme to App component so that theme can trickle down to other components
+
 class App extends React.Component {
   constructor() {
     super()

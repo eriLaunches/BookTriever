@@ -5,7 +5,6 @@ export const addSeparator = arr => {
 }
 
 export const descriptionHelper = (sBook, bBook) => {
-  console.log('description helper', bBook)
   let description = {}
   if (sBook.subtitle) {
     description.subtitle = sBook.subtitle

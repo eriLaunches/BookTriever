@@ -16,14 +16,11 @@ export const setBook = book => ({
 export const fetchBook = identifier => {
   return async dispatch => {
     try {
-      console.log('hitting this fetch single book thunk?')
       const response = await axios.get(
         `https://openlibrary.org/api/books?bibkeys=${identifier.type}:${
           identifier.id
         }&jscmd=details&format=json`
       )
-      console.log('SingleBook Axios response', response.data)
-      console.log('THUNK', response.data)
       let data = response.data[`${identifier.type}:${identifier.id}`]
       if (data.details.description) {
         const action = setBook(data.details)
