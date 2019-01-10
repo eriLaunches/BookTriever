@@ -18,7 +18,7 @@ export const fetchBooks = input => {
       const formatInput = input.split(' ').join('+')
       // Used destructuring to parsed response to get only books object
       const {data: books} = await axios.get(
-        `http://openlibrary.org/search.json?title=${formatInput}`
+        `https://openlibrary.org/search.json?title=${formatInput}`
       )
       const action = setBooks(books.docs)
       dispatch(action)
